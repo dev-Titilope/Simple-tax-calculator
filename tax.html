@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nigeria Professional Payroll & Tax Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nigeria Monthly Tax & Payroll Tracker</h1>
+            <p>Full breakdown of Base, Variable, and Non-Regular Pay (13-Month Support)</p>
+        </header>
+
+        <div class="month-nav">
+            <label>Currently Editing:</label>
+            <select id="monthSelect" onchange="switchMonth()"></select>
+        </div>
+
+        <div class="main-grid">
+            <section class="card input-panel">
+                <div class="section-header">
+                    <h2>(A) Gross Earnings</h2>
+                </div>
+                
+                <div class="sub-section">
+                    <h3>Fixed Pay: Base</h3>
+                    <div class="field"><label>Basic</label><input type="number" data-key="basic" value="0"></div>
+                    <div class="field"><label>Housing</label><input type="number" data-key="housing" value="0"></div>
+                    <div class="field"><label>Transport</label><input type="number" data-key="transport" value="0"></div>
+                    <div class="field"><label>Other Allowance</label><input type="number" data-key="other_allowance" value="0"></div>
+                </div>
+
+                <div class="sub-section">
+                    <h3>Fixed Pay: Other</h3>
+                    <div class="field"><label>Infra. Stipend</label><input type="number" data-key="infra_stipend" value="0"></div>
+                    <div class="field"><label>Complexity Boost</label><input type="number" data-key="complexity_boost" value="0"></div>
+                    <div class="field"><label>Compliance Inc.</label><input type="number" data-key="compliance_inc" value="0"></div>
+                </div>
+
+                <div class="sub-section">
+                    <h3>Variable & Non-Regular</h3>
+                    <div class="field"><label>Night Allowance</label><input type="number" data-key="night_allw" value="0"></div>
+                    <div class="field"><label>Project Premium</label><input type="number" data-key="proj_prem" value="0"></div>
+                    <div class="field"><label>Perf. Bonus</label><input type="number" data-key="perf_bonus" value="0"></div>
+                    <div class="field"><label>Overtime/Holiday</label><input type="number" data-key="overtime" value="0"></div>
+                    <div class="field"><label>Comm/Misc</label><input type="number" data-key="misc" value="0"></div>
+                </div>
+
+                <div class="section-header mt">
+                    <h2>(B) Employer Contributions</h2>
+                </div>
+                <div class="field"><label>Pension (ER)</label><input type="number" data-key="er_pension" value="0"></div>
+                <div class="field"><label>ITF (1%)</label><input type="number" data-key="itf" value="0"></div>
+                <div class="field"><label>NSITF (1%)</label><input type="number" data-key="nsitf" value="0"></div>
+            </section>
+
+            <section class="card results-panel">
+                <h2>Monthly Calculation</h2>
+                <div class="res-item"><span>Total Gross:</span> <strong id="res-gross">₦0.00</strong></div>
+                <div class="res-item"><span>EE Pension (8%):</span> <strong id="res-pension">₦0.00</strong></div>
+                <div class="res-item"><span>Tax Relief (CRA):</span> <strong id="res-cra">₦0.00</strong></div>
+                <div class="res-item highlight-tax"><span>Monthly PAYE:</span> <strong id="res-tax">₦0.00</strong></div>
+                <hr>
+                <div class="res-item highlight-net"><span>Net Take-Home:</span> <strong id="res-net">₦0.00</strong></div>
+                <button class="save-btn" onclick="saveData()">Save Month to Summary</button>
+            </section>
+        </div>
+
+        <section class="summary-section">
+            <div class="section-header">
+                <h2>Annual Accumulative Summary (Full Breakdown)</h2>
+            </div>
+            <div class="table-container">
+                <table id="summaryTable">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">Month</th>
+                            <th colspan="4" class="h-base">Fixed: Base</th>
+                            <th colspan="3" class="h-other">Fixed: Other</th>
+                            <th colspan="5" class="h-var">Variable / Non-Reg</th>
+                            <th colspan="3" class="h-er">Employer Contrib.</th>
+                            <th colspan="3" class="h-total">Financials</th>
+                        </tr>
+                        <tr class="sub-head">
+                            <th>Basic</th><th>Hous.</th><th>Trans.</th><th>Other</th>
+                            <th>Infra</th><th>Boost</th><th>Compl</th>
+                            <th>Night</th><th>Proj</th><th>Bonus</th><th>OVT</th><th>Misc</th>
+                            <th>Pension</th><th>ITF</th><th>NSITF</th>
+                            <th>Gross</th><th>Tax</th><th>Net</th>
+                        </tr>
+                    </thead>
+                    <tbody id="summaryBody"></tbody>
+                    <tfoot id="summaryFoot"></tfoot>
+                </table>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
